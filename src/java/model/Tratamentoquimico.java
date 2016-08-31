@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package model;
 
 /**
  *
  * @author Kleber
  */
-public class Perfil {
+public class Tratamentoquimico {
     private Integer id;
     private String descricao;
 
