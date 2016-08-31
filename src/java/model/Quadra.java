@@ -32,11 +32,11 @@ public class Quadra {
         this.nome = nome;
     }
 
-    public Lista getRuas() {
+    public List getRuas() {
         return ruas;
     }
 
-    public void setRuas(Lista ruas) {
+    public void setRuas(List ruas) {
         this.ruas = ruas;
     }
 }
