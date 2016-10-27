@@ -6,15 +6,24 @@
 package model;
 
 import antlr.collections.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kleber
  */
+@Entity
+@Table(name = "bairro")
 public class Bairro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nome;
-    private List quadras;
+    //private List quadras;
 
     public Integer getId() {
         return id;
@@ -32,11 +41,11 @@ public class Bairro {
         this.nome = nome;
     }
 
-    public List getQuadras() {
+   /* public List getQuadras() {
         return quadras;
     }
 
     public void setQuadras(List quadras) {
         this.quadras = quadras;
-    }
+    }*/
 }
