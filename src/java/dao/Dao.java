@@ -6,13 +6,11 @@
 package dao;
 
 import model.Bairro;
+import model.Perfil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author Kleber
- */
+
 public abstract class Dao {
     public void inserir(Object object){
         Session session = HibernateUtil.getSessionFactory().openSession();

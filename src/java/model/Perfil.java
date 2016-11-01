@@ -5,13 +5,21 @@
  */
 package model;
 
-/**
- *
- * @author Kleber
- */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+    @Entity
+    @Table(name = "perfil")
 public class Perfil {
     private Integer id;
     private String descricao;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     public Integer getId() {
         return id;

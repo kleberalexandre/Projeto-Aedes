@@ -9,5 +9,6 @@
     <property name="hibernate.connection.password">123456</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="model.Bairro"/>
+    <mapping class="model.Perfil"/>
   </session-factory>
 </hibernate-configuration>
