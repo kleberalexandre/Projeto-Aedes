@@ -24,5 +24,33 @@ public abstract class Dao {
         }finally{
             session.close();
         }
+    }
+
+    public void atualizar(Object object){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t =  session.beginTransaction();
+        try{
+            session.update(object);
+            t.commit();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            t.rollback();
+        }finally{
+            session.close();
+        }
+    }
+
+    public void excluir(Object object){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t =  session.beginTransaction();
+        try{
+            session.delete(object);
+            t.commit();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            t.rollback();
+        }finally{
+            session.close();
+        }
     }    
 }
