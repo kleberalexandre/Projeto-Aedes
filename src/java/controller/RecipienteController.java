@@ -6,6 +6,9 @@
 package controller;
 
 import dao.DaoRecipiente;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import model.Recipiente;
@@ -40,5 +43,11 @@ public class RecipienteController {
     }
     
     
-    
+    public void voltar(){
+        try {
+            util.Util.redirecionar("principal.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RecipienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
