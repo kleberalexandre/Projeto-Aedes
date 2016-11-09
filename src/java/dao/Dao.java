@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 
 public abstract class Dao {
     public void inserir(Object object){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t =  session.beginTransaction();
         try{
             session.persist(object);
@@ -22,12 +22,11 @@ public abstract class Dao {
             ex.printStackTrace();
             t.rollback();
         }finally{
-            session.close();
         }
     }
 
     public void atualizar(Object object){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t =  session.beginTransaction();
         try{
             session.update(object);
@@ -36,12 +35,11 @@ public abstract class Dao {
             ex.printStackTrace();
             t.rollback();
         }finally{
-            session.close();
         }
     }
 
     public void excluir(Object object){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t =  session.beginTransaction();
         try{
             session.delete(object);
@@ -50,7 +48,6 @@ public abstract class Dao {
             ex.printStackTrace();
             t.rollback();
         }finally{
-            session.close();
         }
     }    
 }

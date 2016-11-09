@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.List;
 import model.Usuario;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,7 +16,7 @@ import org.hibernate.Transaction;
  */
 public class DaoUsuario extends Dao {
     public Usuario logar(String usuario, String senha){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.beginTransaction();
         Usuario u = null;
         try{
@@ -24,12 +25,27 @@ public class DaoUsuario extends Dao {
                     .setParameter("login", usuario)
                     .setParameter("senha", senha)
                     .uniqueResult();
+            transaction.commit();
             return u;
         }catch(Exception ex){
-            
+            transaction.rollback();
         }
         finally{
             return u;
+        }
+    }
+    
+    public List<Usuario> listar(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        List<Usuario> lista = null;
+        try{
+            lista = session.createQuery(" from Usuario").list();
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return lista;
         }
     }
 }
