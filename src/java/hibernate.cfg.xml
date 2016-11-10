@@ -12,5 +12,6 @@
     <mapping class="model.Bairro"/>
     <mapping class="model.Perfil"/>
     <mapping class="model.Usuario"/>
+     <mapping class="model.Recipiente"/>
   </session-factory>
 </hibernate-configuration>

@@ -5,16 +5,29 @@
  */
 package dao;
 
+import java.util.List;
 import model.Recipiente;
+import model.Usuario;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author Kleber
  */
-public class DaoRecipiente {
+public class DaoRecipiente extends Dao {
 
-    public void inserir(Recipiente recipiente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       public List<Recipiente> listar(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        List<Recipiente> lista = null;
+        try{
+            lista = session.createQuery(" from Recipiente").list();
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return lista;
+        }
     }
-    
 }
