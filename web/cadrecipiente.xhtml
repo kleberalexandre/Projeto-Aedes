@@ -22,7 +22,8 @@
                 <h:outputText value="#{beanValidationView.name}" />
                 
                 <h:outputLabel value="Risco"/>
-                <p:selectOneRadio id="recipiente" value="#{recipienteController.recipiente.risco}"
+                
+                <p:selectOneRadio id="risco" value="#{recipienteController.recipiente.risco}"
                                   required="true" requiredMessage="Informe o Risco de contaminação">
                     <f:selectItem itemLabel="Pequeno" itemValue="Pequeno" /> 
                     <f:selectItem itemLabel="Alto" itemValue="Alto" />
