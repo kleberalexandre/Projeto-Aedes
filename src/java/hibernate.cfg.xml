@@ -6,12 +6,16 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/globalaedes.db?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.connection.password"></property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>    
     <mapping class="model.Bairro"/>
     <mapping class="model.Perfil"/>
     <mapping class="model.Usuario"/>
      <mapping class="model.Recipiente"/>
+     <mapping class="model.Rua"/>
+     <mapping class="model.TipoVisita"/>
+     <mapping class="model.SituacaoImovel"/>
   </session-factory>
 </hibernate-configuration>

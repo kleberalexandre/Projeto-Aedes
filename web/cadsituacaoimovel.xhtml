@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Situação Imoóvel</title>
+    </h:head>
+    <h:body>
+    <h:form>
+        <p:commandButton value="Voltar" action="#{situacaoImovelController.voltar()}"/>
+    </h:form>
+        
+    <h:form id="form">
+        <p:panel header="Situação Imóvel">
+            <h:panelGrid columns="4" cellpadding="5">
+                 <h:outputLabel for="situacaoImovel" value="Descrição:" />
+                 <p:inputText id="situacaoImovel" value="#{situacaoImovelController.situacaoImovel.descricao}" label="situacaoImovel"
+                             required="true" requiredMessage="Informe o nome do situacaoImovel"/>
+                             <p:message for="situacaoImovel" />
+                <h:outputText value="#{beanValidationView.name}" />
+                
+
+            </h:panelGrid>
+ 
+            <p:commandButton value="Salvar" icon="ui-icon-check" validateClient="true"
+                             action="#{situacaoImovelController.gravar()}" update=":form,:grid"/>
+        </p:panel>
+    </h:form>
+        
+    <h:form id="grid">
+        <p:dataTable var="situacaoImovel" value="#{situacaoImovelController.listaSituacaoImovel}">
+            <p:column headerText="Id">
+                <h:outputText value="#{situacaoImovel.id}" />
+            </p:column>
+            
+            <p:column headerText="descricao">
+                <h:outputText value="#{situacaoImovel.descricao}"/>
+           </p:column>    
+            
+            <p:column headerText="Opções">
+                <p:commandButton value="Excluir" action="#{situacaoImovelController.excluir(situacaoImovel)}" update=":grid"/>
+                <p:commandButton value="Alterar" action="#{situacaoImovelController.alterar(situacaoImovel)}" update=":form"/>
+            </p:column>             
+        </p:dataTable>
+     </h:form>
+    </h:body>
+</html>

@@ -16,7 +16,7 @@
         <p:panel header="bairro">
             <h:panelGrid columns="4" cellpadding="5">
                  <h:outputLabel for="bairro" value="Nome Bairro" />
-                 <p:inputText id="bairro" value="#{recipienteController.recipiente.descricao}" label="bairro"
+                 <p:inputText id="bairro" value="#{bairroController.bairro.nome}" label="bairro"
                              required="true" requiredMessage="Informe o nome do bairro"/>
                              <p:message for="bairro" />
                 <h:outputText value="#{beanValidationView.name}" />
@@ -25,27 +25,128 @@
             </h:panelGrid>
  
             <p:commandButton value="Salvar" icon="ui-icon-check" validateClient="true"
-                             action="#{recipienteController.gravar()}" update=":form,:grid"/>
+                             action="#{bairroController.gravar()}" update=":form,:grid"/>
         </p:panel>
     </h:form>
         
     <h:form id="grid">
-        <p:dataTable var="bairro" value="#{bairroController.lista}">
+        <p:dataTable var="bairro" value="#{bairroController.listaBairro}">
             <p:column headerText="Id">
                 <h:outputText value="#{bairro.id}" />
             </p:column>
             
             <p:column headerText="bairro">
-                <h:outputText value="#{bairro}"/>
+                <h:outputText value="#{bairro.nome}"/>
            </p:column>
             
            
             
             <p:column headerText="Opções">
-                <p:commandButton value="Excluir" action="#{recipienteController.excluir(recipiente)}" update=":grid"/>
-                <p:commandButton value="Alterar" action="#{recipienteController.alterar(recipiente)}" update=":form"/>
+                <p:commandButton value="Excluir" action="#{bairroController.excluir(bairro)}" update=":grid"/>
+                <p:commandButton value="Alterar" action="#{bairroController.alterar(bairro)}" update=":form"/>
+                <p:commandButton value="Ruas" action="#{bairroController.abrirRuas(bairro)}" update=":formRuas"/>
             </p:column>             
         </p:dataTable>
      </h:form>
+        
+    
+    <p:dialog id="dialogRuas" header="Ruas" 
+              widgetVar="dialogRuas" showEffect="fade" 
+              hideEffect="fade" resizable="false" width="800">
+        <h:form id="formRuas" prependId="false" >
+            <p:commandButton value="Inserir" action="#{bairroController.abrirInserirRua()}"
+                             update=":formInserirRuas"/>
+            <p:dataTable
+                value="#{bairroController.bairroSelecionadoRua.ruas}"
+                var="rua"
+                paginator="true"
+                rows="15"> 
+                <p:column headerText="Id">
+                    <h:outputText value="#{rua.id}" />
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{rua.nome}" />
+                </p:column> 
+                <p:column headerText="Quadra">
+                    <h:outputText value="#{rua.quadra}" />
+                </p:column>                 
+                <p:column headerText="Opções" style="width: 300px">
+                    <p:commandButton value="Excluir"
+                                     action="#{bairroController.excluirRua(rua)}"
+                                     update=":formRuas"/>
+                    <p:commandButton value="Alterar"
+                                     action="#{bairroController.abrirAlterarRua(rua)}"
+                                     update=":formAlterarRuas"/>                    
+                </p:column>                 
+            </p:dataTable>
+        </h:form>
+    </p:dialog>
+    
+        
+    <h:form id="formInserirRuas" prependId="false" >
+        <p:dialog  header="Insrir Ruas" widgetVar="dialogInserirRuas" showEffect="fade" hideEffect="fade" resizable="false" width="600">
+            <table>
+                <tr>
+                    <td>
+                        Nome
+                        <br/>
+                        <p:inputText value="#{bairroController.rua.nome}"
+                                     required="true"
+                                     requiredMessage="Informe a Rua"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Quadra
+                        <br/>                        
+                        <p:inputText value="#{bairroController.rua.quadra}"
+                                     required="true"
+                                     requiredMessage="Informe a Quadra"/>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>                        
+                        <p:commandButton value="Gravar" action="#{bairroController.gravarRua()}"
+                                         onclick="PF('dialogInserirRuas').hide()"
+                                         update=":formRuas"/>
+                    </td>
+                </tr>
+            </table>
+        </p:dialog>
+    </h:form>  
+        
+    
+    <p:dialog id="dialogAlterarRuas" header="Alterar Ruas" widgetVar="dialogAlterarRuas" showEffect="fade" hideEffect="fade" resizable="false" width="600">
+        <h:form id="formAlterarRuas" prependId="false" >
+            <table>
+                <tr>
+                    <td>
+                        Nome
+                        <br/>
+                        <p:inputText value="#{bairroController.rua.nome}"
+                                     required="true"
+                                     requiredMessage="Informe a Rua"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Quadra
+                        <br/>
+                        <p:inputText value="#{bairroController.rua.quadra}"
+                                     required="true"
+                                     requiredMessage="Informe a Quadra"/>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p:commandButton value="Gravar" action="#{bairroController.alterarRua()}"
+                                         onclick="PF('dialogAlterarRuas').hide()"
+                                         update=":formRuas"/>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </p:dialog>
+              
     </h:body>
 </html>

@@ -5,13 +5,10 @@
  */
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,16 +16,12 @@ import javax.persistence.Table;
  * @author Kleber
  */
 @Entity
-@Table(name = "bairro")
-public class Bairro {
+@Table(name = "situacaoimovel")
+public class SituacaoImovel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String nome;
-    
-    @OneToMany(mappedBy = "bairro")
-    private List<Rua> ruas = new ArrayList<Rua>();
-    
+    private String descricao;
 
     public Integer getId() {
         return id;
@@ -38,21 +31,11 @@ public class Bairro {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
-
-    public List<Rua> getRuas() {
-        return ruas;
-    }
-
-    public void setRuas(List<Rua> ruas) {
-        this.ruas = ruas;
-    }
-    
-    
 }

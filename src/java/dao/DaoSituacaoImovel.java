@@ -6,7 +6,8 @@
 package dao;
 
 import java.util.List;
-import model.Bairro;
+import model.SituacaoImovel;
+import model.Usuario;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,14 +15,14 @@ import org.hibernate.Transaction;
  *
  * @author Kleber
  */
-public class DaoBairro extends Dao{
+public class DaoSituacaoImovel extends Dao {
 
-    public List<Bairro> listar(){
+       public List<SituacaoImovel> listar(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        List<Bairro> lista = null;
+        List<SituacaoImovel> lista = null;
         try{
-            lista = session.createQuery(" from Bairro").list();
+            lista = session.createQuery(" from SituacaoImovel").list();
             transaction.commit();
         }catch(Exception ex){
             transaction.rollback();
@@ -29,5 +30,4 @@ public class DaoBairro extends Dao{
             return lista;
         }
     }
-
 }

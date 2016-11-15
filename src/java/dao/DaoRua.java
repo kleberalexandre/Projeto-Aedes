@@ -14,14 +14,14 @@ import org.hibernate.Transaction;
  *
  * @author Kleber
  */
-public class DaoBairro extends Dao{
+public class DaoRua extends Dao{
 
     public List<Bairro> listar(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = session.beginTransaction();
         List<Bairro> lista = null;
         try{
-            lista = session.createQuery(" from Bairro").list();
+            lista = session.createQuery(" from Rua").list();
             transaction.commit();
         }catch(Exception ex){
             transaction.rollback();
