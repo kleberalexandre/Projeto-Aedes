@@ -7,6 +7,7 @@ package dao;
 
 import java.util.List;
 import model.Bairro;
+import model.Recipiente;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,10 +15,19 @@ import org.hibernate.Transaction;
  *
  * @author Kleber
  */
-public class DaoBairro extends Dao{
+public class DaoBairro extends Dao {
 
-    public List<Bairro> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       public List<Bairro> listar(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        List<Bairro> lista = null;
+        try{
+            lista = session.createQuery(" from Bairro").list();
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return lista;
+        }
     }
-
 }
