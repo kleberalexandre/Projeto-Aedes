@@ -49,22 +49,8 @@ public class RecipienteController {
         recipiente = new Recipiente();
         init();
     }
+  
 
-    public Recipiente getRecipiente() {
-        return recipiente;
-    }
-
-    public void setPerfil(Recipiente recipiente) {
-        this.recipiente = recipiente;
-    }
-
-    public List<Recipiente> getListaRecipientes() {
-        return listaRecipiente;
-    }
-
-    public void setListaRecipiente (List<Recipiente> listaRecipientes) {
-        this.listaRecipiente = listaRecipientes;
-    }
     
     public void excluir(Recipiente recipiente){
         DaoRecipiente daoRecipiente = new DaoRecipiente();
@@ -75,6 +61,8 @@ public class RecipienteController {
     public void alterar(Recipiente recipiente){
         this.recipiente = recipiente;
     }
+
+
     
     public void voltar(){
         try {
@@ -83,5 +71,23 @@ public class RecipienteController {
             Logger.getLogger(RecipienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public Recipiente getRecipiente() {
+        return recipiente;
+    }
+
+    public void setRecipiente(Recipiente recipiente) {
+        this.recipiente = recipiente;
+    }
+
+    public List<Recipiente> getListaRecipiente() {
+        return listaRecipiente;
+    }
+
+    public void setListaRecipiente(List<Recipiente> listaRecipiente) {
+        this.listaRecipiente = listaRecipiente;
+    }
+    
+    
 }
 

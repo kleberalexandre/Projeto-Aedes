@@ -22,8 +22,7 @@ public class Recipiente {
     @Column(nullable = false, length = 15)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    
+    private Integer id;   
     @Column(nullable = false, length = 150)
     private String descricao;
     @Column(nullable = false, length = 20)

@@ -5,54 +5,53 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Recipiente</title>
+        <title>Recipientes</title>
     </h:head>
     <h:body>
     <h:form>
-        <p:commandButton value="Voltar" action="#{recipienteControllerer.voltar()}"/>
+        <p:commandButton value="Voltar" action="#{recipienteController.voltar()}"/>
     </h:form>
         
     <h:form id="form">
-        <p:panel header="Recipiente">
+        <p:panel header="recipiente">
             <h:panelGrid columns="4" cellpadding="5">
-                 <h:outputLabel for="descricao" value="Descricao:" />
-                        <p:inputText id="descricao" value="#{recipienteController.recipiente.descricao}" label="Descricao"
-                             required="true" requiredMessage="Informe o descricao"/>
-                             <p:message for="descricao" />
+                 <h:outputLabel for="recipiente" value="Nome Recipiente:" />
+                 <p:inputText id="recipiente" value="#{recipienteController.recipiente.descricao}" label="recipiente"
+                             required="true" requiredMessage="Informe o nome do recipiente"/>
+                             <p:message for="recipiente" />
                 <h:outputText value="#{beanValidationView.name}" />
-                
-                <h:outputLabel value="Risco"/>
                 
                 <p:selectOneRadio id="risco" value="#{recipienteController.recipiente.risco}"
                                   required="true" requiredMessage="Informe o Risco de contaminação">
                     <f:selectItem itemLabel="Pequeno" itemValue="Pequeno" /> 
                     <f:selectItem itemLabel="Alto" itemValue="Alto" />
                 </p:selectOneRadio>
-                <p:message for="recipiente" />
+                <p:message for="risco" />
 
             </h:panelGrid>
-
+ 
             <p:commandButton value="Salvar" icon="ui-icon-check" validateClient="true"
                              action="#{recipienteController.gravar()}" update=":form,:grid"/>
         </p:panel>
     </h:form>
         
     <h:form id="grid">
-        <p:dataTable var="descricao" value="#{recipienteContoller.listaRecipientes}">
+        <p:dataTable var="recipiente" value="#{recipienteController.listaRecipiente}">
             <p:column headerText="Id">
                 <h:outputText value="#{recipiente.id}" />
             </p:column>
             
-            <p:column headerText="Descrição">
+            <p:column headerText="descricao">
+                <h:outputText value="#{recipiente.descricao}"/>
            </p:column>
             
-            <p:column headerText="Tipo">
-                <h:outputText value="#{recipiente}" />
+            <p:column headerText="Risco">
+                <h:outputText value="#{recipiente.risco}"/>
             </p:column>             
             
             <p:column headerText="Opções">
-                <p:commandButton value="Excluir" action="#{recipienteController.excluir(usuario)}" update=":grid"/>
-                <p:commandButton value="Alterar" action="#{recipienteController.alterar(usuario)}" update=":form"/>
+                <p:commandButton value="Excluir" action="#{recipienteController.excluir(recipiente)}" update=":grid"/>
+                <p:commandButton value="Alterar" action="#{recipienteController.alterar(recipiente)}" update=":form"/>
             </p:column>             
         </p:dataTable>
      </h:form>
