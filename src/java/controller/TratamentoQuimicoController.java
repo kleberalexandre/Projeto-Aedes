@@ -48,7 +48,9 @@ public class TratamentoQuimicoController {
         }
         tratamentoQuimico = new TratamentoQuimico();
         init();
+    
     }
+    
   
 
     
@@ -88,6 +90,6 @@ public class TratamentoQuimicoController {
         this.listaTratamentoQuimico = listaTratamentoQuimico;
     }
     
-    
 }
+    
 
