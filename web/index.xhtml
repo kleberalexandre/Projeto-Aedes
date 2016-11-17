@@ -5,34 +5,39 @@
       xmlns:p="http://primefaces.org/ui">
       
     <h:head>
-        <title>Facelet Title</title>
+        <title>Sistema Vetor Aedes</title>
     </h:head>
     
-    <h:body>
+    <h:body style="background-color: #f5f6f6">
         <h:form>
+            <p:fieldset style="margin: 10% auto; width: 30%;">
             <table>
                 <tr>
-                    <td>
+                    <td valign="top">
                         Login
-                    </td>
-                    <td>
+                      <br/>
                         <p:inputText value="#{loginController.login}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                      <br/><br/>
                         Senha
-                    </td>
-                    <td>
+                      <br/>
                         <p:password value="#{loginController.senha}"/>
-                    </td>
-                </tr>                
-                <tr>
+                                              
+                       <br/>
+                       <br/>
+                         <p:commandButton value="Entrar" action="#{loginController.logar()}"/>
+                  
+                    </td>  
+                    
                     <td>
-                        <p:commandButton value="Entrar" action="#{loginController.logar()}"/>
-                    </td>
+                <div style="text-align: center">
+                  <img src="#{request.contextPath}/imagens/aedes.png" width="250px"/>
+                  <h4>Versão 0.5</h4> 
+                </div>
+                     </td>
+                
                 </tr>
             </table>
+           </p:fieldset>
         </h:form>
         
     </h:body>
