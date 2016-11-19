@@ -49,6 +49,8 @@ public class LoginController {
             Usuario u = daoUsuario.logar(login, senha);
             if (u != null){
                 util.Util.redirecionar("principal.xhtml");
+            }else{
+                util.Util.enviarMSGGrafica("Login", "Login/Senha incorreto");
             }
         }
     }

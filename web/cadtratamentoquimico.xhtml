@@ -29,7 +29,8 @@
     </h:form>
         
     <h:form id="grid">
-        <p:dataTable var="tratamentoQuimico" value="#{tratamentoQuimicoController.listaTratamentoQuimico}">
+        <p:dataTable var="tratamentoQuimico" value="#{tratamentoQuimicoController.listaTratamentoQuimico}" 
+                     paginator="true" rows="10">
             <p:column headerText="Id">
                 <h:outputText value="#{tratamentoQuimico.id}" />
             </p:column>

@@ -6,7 +6,9 @@
 package util;
 
 import java.io.IOException;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -17,5 +19,10 @@ public class Util {
         FacesContext.getCurrentInstance().getExternalContext().
                 redirect(FacesContext.getCurrentInstance().
                         getExternalContext().getRequestContextPath()+"/"+pagina);
+    }
+    
+    public static void enviarMSGGrafica(String titulo, String msg){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,titulo, msg);
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 }

@@ -36,7 +36,7 @@
     </h:form>
         
     <h:form id="grid">
-        <p:dataTable var="recipiente" value="#{recipienteController.listaRecipiente}">
+        <p:dataTable var="recipiente" value="#{recipienteController.listaRecipiente}" paginator="true" rows="10">
             <p:column headerText="Id">
                 <h:outputText value="#{recipiente.id}" />
             </p:column>

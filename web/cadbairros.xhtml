@@ -30,7 +30,7 @@
     </h:form>
         
     <h:form id="grid">
-        <p:dataTable var="bairro" value="#{bairroController.listaBairro}">
+        <p:dataTable var="bairro" value="#{bairroController.listaBairro}" paginator="true" rows="10">
             <p:column headerText="Id">
                 <h:outputText value="#{bairro.id}" />
             </p:column>
