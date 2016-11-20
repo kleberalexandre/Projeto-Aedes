@@ -5,6 +5,7 @@
  */
 package model;
 
+import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -21,9 +22,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "bairro")
 public class Bairro {
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
+    @Expose
     private String nome;
     
     @OneToMany(mappedBy = "bairro")
