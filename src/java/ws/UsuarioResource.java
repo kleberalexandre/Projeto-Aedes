@@ -6,16 +6,20 @@
 package ws;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.*;
 import dao.DaoUsuario;
+import java.lang.reflect.Type;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import model.Usuario;
 
 /**
  * REST Web Service
@@ -47,23 +51,23 @@ public class UsuarioResource {
         return gson.toJson(daoUsuario.listar());
     }
     
-    @PUT
+    @POST
     @Path("/logar/{usuario}/{senha}")
     @Produces(MediaType.APPLICATION_JSON)
     public String listarById(@PathParam("usuario") String usuario, @PathParam("senha") String senha) {
         DaoUsuario daoUsuario = new DaoUsuario();
         Gson gson = new Gson();
         if (daoUsuario.logar(usuario, senha) == null)
-            return gson.toJson("sucesso");
-        else
             return gson.toJson("falha");
+        else
+            return gson.toJson("sucesso");
     }    
 
     /**
      * PUT method for updating or creating an instance of GenericResource
      * @param content representation for the resource
      */
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
