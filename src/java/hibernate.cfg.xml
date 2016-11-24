@@ -18,5 +18,6 @@
      <mapping class="model.TipoVisita"/>
      <mapping class="model.SituacaoImovel"/>
      <mapping class="model.TratamentoQuimico"/>
+     <mapping class="model.Atividade"/>
   </session-factory>
 </hibernate-configuration>
