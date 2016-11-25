@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * REST Web Service
  *
- * @author ronaldo
+ * @author kleber
  */
 @Path("recipiente")
 public class RecipienteResource {

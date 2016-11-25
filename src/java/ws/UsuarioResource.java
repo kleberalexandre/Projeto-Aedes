@@ -24,7 +24,7 @@ import model.Usuario;
 /**
  * REST Web Service
  *
- * @author ronaldo
+ * @author kleber
  */
 @Path("usuario")
 public class UsuarioResource {

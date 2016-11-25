@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author cpdpas2
+ * @author kleber
  */
 public class  DaoAtividade extends Dao{
 
