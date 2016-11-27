@@ -5,11 +5,17 @@
  */
 package model;
 
+import com.google.gson.annotations.Expose;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,12 +28,18 @@ public class Recipiente {
     @Column(nullable = false, length = 15)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Expose
     private Integer id;   
     @Column(nullable = false, length = 150)
+    @Expose
     private String descricao;
     @Column(nullable = false, length = 20)
+    @Expose
     private String risco;
 
+    @ManyToMany(mappedBy = "recipientes")
+    private List<Visita> visitas = new ArrayList<Visita>();
+    
     public Integer getId() {
         return id;
     }
@@ -62,6 +74,11 @@ public class Recipiente {
         this.descricao = descricao;
     }
 
-    
-    
+    public List<Visita> getVisitas() {
+        return visitas;
+    }
+
+    public void setVisitas(List<Visita> visitas) {
+        this.visitas = visitas;
+    }
 }

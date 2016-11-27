@@ -48,4 +48,18 @@ public class DaoUsuario extends Dao {
             return lista;
         }
     }
+    
+    public Usuario getById(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Usuario usuario = null;
+        try{
+            usuario = (Usuario) session.get(Usuario.class, id);
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return usuario;
+        }        
+    }    
 }

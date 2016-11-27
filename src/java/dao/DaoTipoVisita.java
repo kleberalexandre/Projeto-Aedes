@@ -30,4 +30,18 @@ public class DaoTipoVisita extends Dao {
             return lista;
         }
     }
+       
+    public TipoVisita getById(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        TipoVisita tipoVisita = null;
+        try{
+            tipoVisita = (TipoVisita) session.get(TipoVisita.class, id);
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return tipoVisita;
+        }        
+    }       
 }

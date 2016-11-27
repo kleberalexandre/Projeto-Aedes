@@ -7,24 +7,31 @@ package ws;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dao.DaoTratamentoQuimico;
+import com.google.gson.reflect.*;
+import dao.DaoRua;
+import dao.DaoSituacaoImovel;
+import dao.DaoUsuario;
+import java.lang.reflect.Type;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import model.Usuario;
 
 /**
  * REST Web Service
  *
  * @author kleber
  */
-@Path("tratamentoquimico")
-public class TratamentoQuimicoResource {
+@Path("situacaoimovel")
+public class SituacaoImovelResource {
 
     @Context
     private UriInfo context;
@@ -32,7 +39,7 @@ public class TratamentoQuimicoResource {
     /**
      * Creates a new instance of GenericResource
      */
-    public TratamentoQuimicoResource() {
+    public SituacaoImovelResource() {
     }
 
     /**
@@ -43,16 +50,12 @@ public class TratamentoQuimicoResource {
     @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)
     public String listar() {
-        DaoTratamentoQuimico daoTratamentoQuimico = new DaoTratamentoQuimico();
+        DaoSituacaoImovel daoSituacaoImovel = new DaoSituacaoImovel();
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        return gson.toJson(daoTratamentoQuimico.listar());
+        return gson.toJson(daoSituacaoImovel.listar());
     }
-
-    /**
-     * PUT method for updating or creating an instance of GenericResource
-     * @param content representation for the resource
-     */
-    @PUT
+    
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }

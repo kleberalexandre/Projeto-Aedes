@@ -5,6 +5,7 @@
  */
 package model;
 
+import com.google.gson.annotations.Expose;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,9 @@ import javax.persistence.Table;
 public class Atividade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Expose
     private Integer id;
+    @Expose
     private String atividade;
 
     public Integer getId() {

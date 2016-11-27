@@ -8,6 +8,7 @@ package dao;
 import java.util.List;
 import model.Recipiente;
 import model.Usuario;
+import model.Visita;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -30,4 +31,18 @@ public class DaoRecipiente extends Dao {
             return lista;
         }
     }
+       
+    public Recipiente getById(Integer id){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        Recipiente recipiente = null;
+        try{
+            recipiente = (Recipiente) session.get(Recipiente.class, id);
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return recipiente;
+        }        
+    }       
 }

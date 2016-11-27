@@ -7,7 +7,8 @@ package ws;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dao.DaoTratamentoQuimico;
+import dao.DaoBairro;
+import dao.DaoRua;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -23,8 +24,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author kleber
  */
-@Path("tratamentoquimico")
-public class TratamentoQuimicoResource {
+@Path("rua")
+public class RuaResource {
 
     @Context
     private UriInfo context;
@@ -32,7 +33,7 @@ public class TratamentoQuimicoResource {
     /**
      * Creates a new instance of GenericResource
      */
-    public TratamentoQuimicoResource() {
+    public RuaResource() {
     }
 
     /**
@@ -43,11 +44,20 @@ public class TratamentoQuimicoResource {
     @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)
     public String listar() {
-        DaoTratamentoQuimico daoTratamentoQuimico = new DaoTratamentoQuimico();
+        DaoRua daoRua = new DaoRua();
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        return gson.toJson(daoTratamentoQuimico.listar());
+        return gson.toJson(daoRua.listar());
     }
 
+    @GET
+    @Path("/listar/{idBairro}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String listar(@PathParam("idBairro") String idBairro) {
+        DaoRua daoRua = new DaoRua();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        return gson.toJson(daoRua.listarByBairroId(Integer.parseInt(idBairro)));
+    }    
+    
     /**
      * PUT method for updating or creating an instance of GenericResource
      * @param content representation for the resource

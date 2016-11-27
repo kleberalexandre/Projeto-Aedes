@@ -44,7 +44,7 @@ public class TipoVisitaResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String listar() {
         DaoTipoVisita daoTipoVisita = new DaoTipoVisita();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         return gson.toJson(daoTipoVisita.listar());
     }
 

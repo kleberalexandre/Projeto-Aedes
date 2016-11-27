@@ -5,35 +5,70 @@
  */
 package model;
 
-import java.awt.List;
+import java.util.List;
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kleber
  */
+@Entity
+@Table(name = "visita")
 public class Visita {
-    private Integer id;
-    private String rua;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer Id;
+    @ManyToOne
+    @JoinColumn(name = "idrua")
+    private Rua rua;
     private String numero;
-    private String responsavel;
-    private String situacaoimovel;
-    private List recipientes;
-    private List tratamentoquimico;
-    private String tipovisita; 
+    private String nomeResponsavel;
+    @ManyToOne
+    @JoinColumn(name = "idsituacaoimovel")
+    private SituacaoImovel situacaoImovel;
+    @ManyToOne
+    @JoinColumn(name = "idagente")
+    private Usuario agente; 
+    @ManyToOne
+    @JoinColumn(name = "idtipovisita")
+    private TipoVisita tipoVisita;
 
+    private String longitude;
+    private String latitude;
+    
+    
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name="visita_recipiente",
+          joinColumns = {@JoinColumn(name="visita_id",referencedColumnName = "id")},
+          inverseJoinColumns = {@JoinColumn(name="recipiente_id",referencedColumnName = "id")}
+    )    
+    private List<Recipiente> recipientes = new ArrayList<Recipiente>();
+    
     public Integer getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer Id) {
+        this.Id = Id;
     }
 
-    public String getRua() {
+    public Rua getRua() {
         return rua;
     }
 
-    public void setRua(String rua) {
+    public void setRua(Rua rua) {
         this.rua = rua;
     }
 
@@ -45,44 +80,61 @@ public class Visita {
         this.numero = numero;
     }
 
-    public String getResponsavel() {
-        return responsavel;
+    public String getNomeResponsavel() {
+        return nomeResponsavel;
     }
 
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
+    public void setNomeResponsavel(String nomeResponsavel) {
+        this.nomeResponsavel = nomeResponsavel;
     }
 
-    public String getSituacaoimovel() {
-        return situacaoimovel;
+    public SituacaoImovel getSituacaoImovel() {
+        return situacaoImovel;
     }
 
-    public void setSituacaoimovel(String situacaoimovel) {
-        this.situacaoimovel = situacaoimovel;
+    public void setSituacaoImovel(SituacaoImovel situacaoImovel) {
+        this.situacaoImovel = situacaoImovel;
     }
 
-    public List getRecipientes() {
+    public Usuario getAgente() {
+        return agente;
+    }
+
+    public void setAgente(Usuario agente) {
+        this.agente = agente;
+    }
+
+    public TipoVisita getTipoVisita() {
+        return tipoVisita;
+    }
+
+    public void setTipoVisita(TipoVisita tipoVisita) {
+        this.tipoVisita = tipoVisita;
+    }
+
+    public List<Recipiente> getRecipientes() {
         return recipientes;
     }
 
-    public void setRecipientes(List recipientes) {
+    public void setRecipientes(List<Recipiente> recipientes) {
         this.recipientes = recipientes;
     }
 
-    public List getTratamentoquimico() {
-        return tratamentoquimico;
+    public String getLongitude() {
+        return longitude;
     }
 
-    public void setTratamentoquimico(List tratamentoquimico) {
-        this.tratamentoquimico = tratamentoquimico;
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
-    public String getTipovisita() {
-        return tipovisita;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setTipovisita(String tipovisita) {
-        this.tipovisita = tipovisita;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
+    
     
 }

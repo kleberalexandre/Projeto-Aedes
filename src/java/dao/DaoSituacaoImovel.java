@@ -30,4 +30,18 @@ public class DaoSituacaoImovel extends Dao {
             return lista;
         }
     }
+       
+    public SituacaoImovel getById(Integer id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        SituacaoImovel situacaoImovel = null;
+        try{
+            situacaoImovel = (SituacaoImovel) session.get(SituacaoImovel.class, id);
+            transaction.commit();
+        }catch(Exception ex){
+            transaction.rollback();
+        }finally{
+            return situacaoImovel;
+        }        
+    }       
 }

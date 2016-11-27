@@ -6,6 +6,7 @@
 package ws;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dao.DaoRecipiente;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -43,7 +44,7 @@ public class RecipienteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String listar() {
         DaoRecipiente daoRecipiente = new DaoRecipiente();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         return gson.toJson(daoRecipiente.listar());
     }
 
