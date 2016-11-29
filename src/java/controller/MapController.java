@@ -53,7 +53,7 @@ public class MapController implements Serializable{
             
             Marker marker = new Marker(
                     new LatLng(  new Double(v.getLatitude()), new Double(v.getLongitude())  ),
-                    "Rua: "+v.getRua()+"\n"+
+                    "Rua: "+v.getRua().getNome()+"\n"+
                     "Bairro: "+v.getRua().getBairro().getNome()+"\n"+
                     "Recipientes: "+v.getRecipientes().size());
             if (v.getRecipientes().size()> 0)

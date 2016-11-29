@@ -29,15 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(ws.AtividadeResource.class);
-        resources.add(ws.BairroResource.class);
-        resources.add(ws.RecipienteResource.class);
-        resources.add(ws.RuaResource.class);
-        resources.add(ws.SituacaoImovelResource.class);
-        resources.add(ws.TipoVisitaResource.class);
-        resources.add(ws.TratamentoQuimicoResource.class);
-        resources.add(ws.UsuarioResource.class);
-        resources.add(ws.VisitaResource.class);
     }
     
 }
